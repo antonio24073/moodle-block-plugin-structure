@@ -14,29 +14,58 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-use core_external\util as external_util;
-
 /**
- * Form for editing HTML block instances.
+ * Block definition class for the block_aablock plugin.
  *
  * @package   block_aablock
- * @copyright 1999 onwards Martin Dougiamas (http://dougiamas.com)
+ * @copyright 2025 Antonio Augusto (http://obawp.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 class block_aablock extends block_base {
-    function init() {
+
+    /**
+     * Initialises the block.
+     *
+     * @return void
+     */
+    public function init() {
         $this->title = get_string('pluginname', 'block_aablock');
     }
 
-    function get_content() {
-        global $CFG;
+    function instance_allow_multiple() {
+        return false;
+    }
 
-        if ($this->content !== NULL) {
+    /**
+     * Gets the block contents.
+     *
+     * @return string The block HTML.
+     */
+    public function get_content() {
+        if ($this->content !== null) {
             return $this->content;
         }
 
+        $this->content =  new stdClass;
         $this->content->text = get_string('text','block_aablock');
         $this->content->footer = get_string('footer','block_aablock');
+
         return $this->content;
+    }
+
+    /**
+     * Defines in which pages this block can be added.
+     *
+     * @return array of the pages where the block can be added.
+     */
+    public function applicable_formats() {
+        return [
+            'admin' => false,
+            'site-index' => true,
+            'course-view' => true,
+            'mod' => false,
+            'my' => true,
+        ];
     }
 }

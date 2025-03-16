@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * HTML block caps.
  *
  * @package    block_aablock
  * @copyright  2025 Antonio Augusto (http://obawp.com)
@@ -24,15 +24,23 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2025031400;
-$plugin->requires = 2024100100;
-// $plugin->supported = TODO;   // Available as of Moodle 3.9.0 or later.
-// $plugin->incompatible = TODO;   // Available as of Moodle 3.9.0 or later.
-$plugin->component = 'block_aablock';
-$plugin->maturity = MATURITY_STABLE;
-// $plugin->release = 'TODO';
-
-$plugin->dependencies = [
-    // 'mod_forum' => 2022042100,
-    // 'mod_data' => 2022042100
+$capabilities = [
+    'block/aablock:myaddinstance' => [
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+            'user' => CAP_ALLOW
+        ],
+        'clonepermissionsfrom' => 'moodle/my:manageblocks'
+    ],
+    'block/aablock:addinstance' => [
+        'riskbitmask' => RISK_SPAM | RISK_XSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes' => [
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
+        ],
+        'clonepermissionsfrom' => 'moodle/site:manageblocks'
+    ],
 ];

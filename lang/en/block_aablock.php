@@ -18,10 +18,14 @@
  * Strings for component 'block_aablock', language 'en', branch 'MOODLE_20_STABLE'
  *
  * @package   block_aablock
- * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @copyright 2025 Antonio Augusto (http://obawp.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'AA Block';
 $string['text'] = 'Hello';
 $string['footer'] = 'World';
+
+$string['pluginname'] = 'aablock block';
+$string['block_aablock'] = 'aablock';
+$string['aablock:addinstance'] = 'Add a new aablock block';
+$string['aablock:myaddinstance'] = 'Add a new aablock block to the My Moodle page';
