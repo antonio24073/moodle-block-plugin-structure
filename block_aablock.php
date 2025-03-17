@@ -22,18 +22,26 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-class block_aablock extends block_base {
+class block_aablock extends block_base
+{
 
     /**
      * Initialises the block.
      *
      * @return void
      */
-    public function init() {
+    public function init()
+    {
         $this->title = get_string('pluginname', 'block_aablock');
     }
 
-    function instance_allow_multiple() {
+    function has_config()
+    {
+        return true;
+    }
+
+    function instance_allow_multiple()
+    {
         return false;
     }
 
@@ -42,14 +50,37 @@ class block_aablock extends block_base {
      *
      * @return string The block HTML.
      */
-    public function get_content() {
+    public function get_content()
+    {
+        global $DB;
+
         if ($this->content !== null) {
             return $this->content;
         }
 
-        $this->content =  new stdClass;
-        $this->content->text = get_string('text','block_aablock');
-        $this->content->footer = get_string('footer','block_aablock');
+        $this->content = new stdClass;
+
+        // Retrieve admin settings
+        $show_courses = get_config('block_aablock', 'show_courses');
+        $show_users = get_config('block_aablock', 'showusers');
+
+
+        if ($show_users) {
+            $users = $DB->get_records('user');
+            foreach ($users as $user) {
+                $this->content->text .= $user->username . ' -  ' . $user->firstname . ' ' . $user->lastname . '<br>';
+            }
+        }
+
+        if ($show_courses) {
+            $courses = $DB->get_records('course');
+            foreach ($courses as $course) {
+                $this->content->text .= $course->fullname . '<br>';
+            }
+        }
+
+        // $this->content->text = get_string('text','block_aablock');
+        // $this->content->footer = get_string('footer', 'block_aablock');
 
         return $this->content;
     }
@@ -59,7 +90,8 @@ class block_aablock extends block_base {
      *
      * @return array of the pages where the block can be added.
      */
-    public function applicable_formats() {
+    public function applicable_formats()
+    {
         return [
             'admin' => false,
             'site-index' => true,

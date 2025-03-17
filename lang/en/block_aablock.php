@@ -22,8 +22,16 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['text'] = 'Hello';
-$string['footer'] = 'World';
+// $string['text'] = 'Hello';
+// $string['footer'] = 'World';
+// $string['showinnavigation'] = 'Show in navigation';
+// $string['showinnavigation_desc'] = 'Show in navigation description';
+
+$string['settings_page_manage'] = 'Manage';
+$string['setting_show_courses_visiblename'] = 'Show Courses';
+$string['setting_show_courses_description'] = 'If checked, courses will be shown in the block';
+$string['setting_show_users_visiblename'] = 'Show Users';
+$string['setting_show_users_description'] = 'If checked, users will be shown in the block';
 
 $string['pluginname'] = 'aablock block';
 $string['block_aablock'] = 'aablock';
