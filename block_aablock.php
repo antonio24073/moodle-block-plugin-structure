@@ -22,6 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
 class block_aablock extends block_base
 {
 
@@ -59,6 +60,7 @@ class block_aablock extends block_base
         }
 
         $this->content = new stdClass;
+        $this->content->text = '';
 
         // Retrieve admin settings
         $show_courses = get_config('block_aablock', 'show_courses');
@@ -78,6 +80,7 @@ class block_aablock extends block_base
                 $this->content->text .= $course->fullname . '<br>';
             }
         }
+
 
         // $this->content->text = get_string('text','block_aablock');
         // $this->content->footer = get_string('footer', 'block_aablock');
