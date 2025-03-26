@@ -1,4 +1,4 @@
-# Moodle Block Plugin Structure -  aablock Block
+# Moodle Block Plugin Structure - aablock Block
 
 This is the `aablock` block for Moodle. It is a starter demo plugin designed to help developers understand how to create a basic block plugin for Moodle. This block displays a list of courses and users based on the admin settings.
 
